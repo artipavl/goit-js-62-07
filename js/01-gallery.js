@@ -17,12 +17,11 @@ gallery.addEventListener("click", (event) => {
 
   instance.show();
 
-  document.addEventListener("keydown", closeLightboxEscape);
-});
-
-basicLightboxEl.addEventListener("click", (event) => {
-  console.log("asdas");
-  stopListenerKeydown();
+  document.addEventListener("keydown", (event) => {
+    if (event.code === "Escape") {
+      instance.close();
+    }
+  });
 });
 
 function addGalleryItems(items) {
@@ -40,10 +39,4 @@ function addGalleryItems(items) {
 </div>`;
     })
     .join("");
-}
-
-function closeLightboxEscape() {
-  if (event.code === "Escape") {
-    instance.close();
-  }
 }
