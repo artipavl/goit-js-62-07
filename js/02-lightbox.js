@@ -5,20 +5,22 @@ const gallery = document.querySelector(".gallery");
 
 gallery.innerHTML = addGalleryItems(galleryItems);
 
-var lightbox = new SimpleLightbox(".gallery__item", {
+var lightBox = new SimpleLightbox(".gallery__item", {
   enableKeyboard: true,
   captionDelay: 250,
 });
 
-gallery.addEventListener("click", (event) => {
+gallery.addEventListener("click", openLightBox)
+  
+function openLightBox(event) {
   event.preventDefault();
 
   if (event.target.nodeName !== "IMG") {
     return;
   }
 
-  lightbox.overlay = true;
-});
+  lightBox.overlay = true;
+}
 
 function addGalleryItems(items) {
   return items
