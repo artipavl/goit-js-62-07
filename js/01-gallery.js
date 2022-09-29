@@ -5,7 +5,10 @@ const gallery = document.querySelector(".gallery");
 
 gallery.innerHTML = addGalleryItems(galleryItems);
 
-gallery.addEventListener("click", (event) => {
+gallery.addEventListener("click", openImgBasicLightbox);
+
+
+function openImgBasicLightbox(event) {
   event.preventDefault();
 
   if (event.target.nodeName !== "IMG") {
@@ -22,7 +25,7 @@ gallery.addEventListener("click", (event) => {
       instance.close();
     }
   });
-});
+}
 
 function addGalleryItems(items) {
   return items
