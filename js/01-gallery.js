@@ -7,7 +7,6 @@ gallery.innerHTML = addGalleryItems(galleryItems);
 
 gallery.addEventListener("click", openImgBasicLightbox);
 
-
 function openImgBasicLightbox(event) {
   event.preventDefault();
 
@@ -15,16 +14,26 @@ function openImgBasicLightbox(event) {
     return;
   }
 
-  const instance = basicLightbox.create(`
-    <img src="${event.target.dataset.source}" width="800" height="600">`);
+  const instance = basicLightbox.create(
+    `
+    <img src="${event.target.dataset.source}" width="800" height="600">`,
+    {
+      onShow: () => {
+        window.addEventListener("keydown", onLightboxKeydown);
+      },
+      onClose: () => {
+        window.removeEventListener("keydown", onLightboxKeydown);
+      },
+    }
+  );
 
   instance.show();
 
-  document.addEventListener("keydown", (event) => {
-    if (event.code === "Escape") {
+  function onLightboxKeydown(e) {
+    if (e.code === "Escape") {
       instance.close();
     }
-  });
+  }
 }
 
 function addGalleryItems(items) {
