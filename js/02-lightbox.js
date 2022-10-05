@@ -5,20 +5,16 @@ const gallery = document.querySelector(".gallery");
 
 gallery.innerHTML = addGalleryItems(galleryItems);
 
-const lightBox = new SimpleLightbox(".gallery__item", {
+const options = {
   enableKeyboard: true,
   captionDelay: 250,
-});
+};
+
+const lightBox = new SimpleLightbox(".gallery__item", options);
 
 gallery.addEventListener("click", openLightBox)
   
 function openLightBox(event) {
-  event.preventDefault();
-
-  if (event.target.nodeName !== "IMG") {
-    return;
-  }
-
   lightBox.overlay = true;
 }
 
