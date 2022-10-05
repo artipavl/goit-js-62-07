@@ -14,17 +14,19 @@ function openImgBasicLightbox(event) {
     return;
   }
 
+  const options = {
+    onShow: () => {
+      window.addEventListener("keydown", onLightboxKeydown);
+    },
+    onClose: () => {
+      window.removeEventListener("keydown", onLightboxKeydown);
+    },
+  };
+
   const instance = basicLightbox.create(
     `
     <img src="${event.target.dataset.source}" width="800" height="600">`,
-    {
-      onShow: () => {
-        window.addEventListener("keydown", onLightboxKeydown);
-      },
-      onClose: () => {
-        window.removeEventListener("keydown", onLightboxKeydown);
-      },
-    }
+    options
   );
 
   instance.show();
