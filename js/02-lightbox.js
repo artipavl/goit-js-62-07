@@ -5,7 +5,7 @@ const gallery = document.querySelector(".gallery");
 
 gallery.innerHTML = addGalleryItems(galleryItems);
 
-var lightBox = new SimpleLightbox(".gallery__item", {
+const lightBox = new SimpleLightbox(".gallery__item", {
   enableKeyboard: true,
   captionDelay: 250,
 });
